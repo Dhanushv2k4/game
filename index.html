@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+ <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <script> 
+    // import  swal from 'sweetalert';
+    
+    function googleTranslateElementInit(){
+          new google.translate.TranslateElement(
+  {pageLanguage: 'en'}, 'google_translate_element' );
+      }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const wasteItems = document.querySelectorAll('.waste-item');
+      const bins = document.querySelectorAll('.bin');
+      let points = 0;
+
+      wasteItems.forEach(wasteItem => {
+        wasteItem.addEventListener('dragstart', dragStart);
+        wasteItem.addEventListener('dragend', dragEnd);
+      });
+
+      bins.forEach(bin => {
+        bin.addEventListener('dragover', dragOver);
+        bin.addEventListener('dragenter', dragEnter);
+        bin.addEventListener('dragleave', dragLeave);
+        bin.addEventListener('drop', drop);
+      });
+
+      function dragStart() {
+        this.classList.add('dragged');
+      }
+
+      function dragEnd() {
+        this.classList.remove('dragged');
+      }
+
+      function dragOver(e) {
+        e.preventDefault();
+      }
+
+      function dragEnter(e) {
+        e.preventDefault();
+        this.classList.add('over');
+      }
+
+      function dragLeave() {
+        this.classList.remove('over');
+      }
+
+      function drop() {
+        this.classList.remove('over');
+        const draggedItem = document.querySelector('.dragged');
+        const parentBin = this.id;
+
+        if (
+          (parentBin === 'dry-bin' && draggedItem.textContent.toLowerCase().includes('plastic')) ||
+          (parentBin === 'dry-bin' && draggedItem.textContent.toLowerCase().includes('paper')) ||
+          (parentBin === 'dry-bin' && draggedItem.textContent.toLowerCase().includes('chips')) ||
+          (parentBin === 'dry-bin' && draggedItem.textContent.toLowerCase().includes('dry waste')) ||
+          (parentBin === 'wet-bin' && draggedItem.textContent.toLowerCase().includes('apple')) ||
+          (parentBin === 'wet-bin' && draggedItem.textContent.toLowerCase().includes('fish bone')) || 
+          (parentBin === 'wet-bin' && draggedItem.textContent.toLowerCase().includes('food remains')) 
+          // (parentBin === 'wet-bin' && (draggedItem.textContent.toLowerCase().includes('organic') || draggedItem.textContent.toLowerCase().includes('wet waste')))
+        ) {
+          this.appendChild(draggedItem);
+          draggedItem.remove();
+          points += 10;
+          updatePoints();
+        } else {
+          alert('Wrong bin! Please try again.');
+          // Swal.fire("SweetAlert2 is working!");
+          points -= 5;
+          updatePoints();
+        }
+      }
+
+      function updatePoints() {
+        const pointsContainer = document.getElementById('points-container');
+        pointsContainer.textContent = 'Points: ' + points;
+      }
+
+      function playAgain() {
+        // Reload the page to restart the game
+        location.reload();
+      }
+    });
+  </script>
+</head>
+<body>
+  <video autoplay muted loop id="myVideo">
+    <source src="bg_video1.mp4" type="video/mp4">
+  </video>
+  <div id="google_translate_element">
+  </div>
+
+  <h1>Waste Sorting Game</h1>
+  <div class="mainsection">
+    <div id="game-container">
+      <div class="bin" id="dry-bin">
+        <img src="download__3_-removebg-preview.png" alt="">
+        Dry Waste Bin
+      </div>
+      <div class="bin" id="wet-bin">
+        <img src="download__2_-removebg-preview.png" alt="">
+        Wet Waste Bin
+      </div>
+      <div class="lastsection">
+        <div id="points-container">Points: 0</div>
+        <button id="play-again-btn" value="Reload Page" onClick="window.location.reload(true)">Play Again</button>
+      </div>
+    </div>
+    
+    <div id="original-container">
+      <div class="waste-item" draggable="true"><span>plastic</span><img src="bottle.png" width="150px" alt=""></div>
+      <div class="waste-item" draggable="true"><span>paper</span><img src="paper.png" width="150px"></div>
+      <div class="waste-item" draggable="true"><span>dry waste</span> <img src="plastic container.png" alt="" width="150px"></div>
+      <div class="waste-item" draggable="true"><span>Apple</span><img src="apple.png" alt="" width="150px"></div>
+      <div class="waste-item" draggable="true"><span>dry waste</span> <img src="plastic cover.png" alt="" width="150px"></div>
+      <div class="waste-item" draggable="true"><span>fish bone </span><img src="fish bone.png" alt="" width="150px"></div>
+      <div class="waste-item" draggable="true"><span>Food remains </span><img src="fruit peal.png" alt="" width="150px"></div>
+      <div class="waste-item" draggable="true"><span>dry waste</span> <img src="straw.png" alt="" width="150px"></div>
+      <div class="waste-item" draggable="true"><span>Food remains</span> <img src="eggshells.png" alt="" width="150px"></div>
+      <div class="waste-item" draggable="true"><span>chips</span> <img src="chips pack.png" alt="" width="150px"></div>
+    </div>  
+    
+    </div>
+</body>
+</html>

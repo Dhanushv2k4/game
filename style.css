@@ -1,0 +1,123 @@
+
+    
+body {
+  font-family: 'Arial', sans-serif;
+  /* background-image: url(backgroundimg.jfif);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; */
+  background-image: url(bg_video.mp4);
+  
+}
+h1{
+position: relative;
+top: 20px;
+text-shadow: 2px 1.5px #33c6e8
+}
+
+#game-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+
+}
+
+.bin {
+  width: 150px;
+  height: 200px;
+  text-align: center;
+  padding: 20px;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.bin img {
+  object-fit: fill;
+  width: 150px;
+  height: 200px;
+}
+
+.waste-item {
+  width: 100px;
+  height: 100px;
+  
+  margin: 10px;
+  cursor: pointer;
+}
+
+.dragged {
+  opacity: 0.5;
+}
+
+#points-container {
+  margin-top: 50px;
+  font-size: 18px;
+  font-size: 40px;
+  /* margin-bottom: 10px; */
+ 
+}
+
+#play-again-btn {
+  margin-top: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+ 
+}
+#original-container{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+body h1{
+  text-align: center;
+}
+
+.mainsection{
+  position: relative;
+  top: 60px;
+  margin-top: 90px;
+}
+/* .lastsection{
+  display: flex;
+  flex-direction: column; 
+   align-items: center;
+  justify-content: flex-end;
+}  */
+
+span{
+  display: none ;
+}
+
+/* .VIpgJd-ZVi9od-ORHb-OEVmcd  {
+  display: none !important;
+} */
+
+#google_translate_element{
+  padding: 10px;
+  width: 500PX;
+  margin-left: 50px;
+  border-radius: 5px;
+}
+
+.goog-te-combo{
+  width: 300px;
+  padding: 5px;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+}
+
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
